@@ -1,0 +1,215 @@
+// cover some element-ui styles
+* {
+  font-family: 'Open Sans';
+}
+
+input.el-input__inner,
+.el-radio-group,
+.el-textarea__inner {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba($color: #000000, $alpha: 0.15);
+
+  &:focus {
+    border-color: $orange;
+  }
+}
+
+.danger > input.el-input__inner {
+  border-color: $red;
+}
+
+.el-radio-button {
+  &.is-active {
+    .el-radio-button__inner {
+      background-color: $orange;
+      border-color: $orange;
+      box-shadow: -1px 0 0 0 $orange;
+      color: white; 
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+
+  &__orig-radio:disabled:checked+.el-radio-button__inner {
+    border: 1px solid #b1b1b1;
+    box-shadow: none;
+    box-shadow: -1px 0 0 0 #b1b1b1;
+    color: #6d6d6d;
+    background-color: #b1b1b1
+  }
+
+  .el-radio-button__inner {
+    width: 100%;
+    &:hover {
+      color: $orange;
+    }
+  }
+}
+
+.el-radio__input {
+  .el-radio__inner {
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+    border-color: $orange;
+    background: white;
+    &::after {
+      min-width: 18px;
+      min-height: 18px;
+      max-width: 18px;
+      max-height: 18px;
+      border: 1px solid white;
+      background-color: $orange;
+    }
+  }
+}
+
+.el-radio__input.is-checked {
+  + .el-radio__label {
+    color: $orange;
+  }
+
+  .el-radio__inner {
+    padding: 2px;
+    border-color: $orange;
+    background: $orange;
+  }
+}
+
+.el-breadcrumb__inner,
+.el-breadcrumb__inner a {
+  font-weight: 400 !important;
+}
+
+.el-upload {
+  input[type="file"] {
+    display: none !important;
+  }
+}
+
+.el-upload__input {
+  display: none;
+}
+
+.cell {
+  .el-tag {
+    margin-right: 0px;
+  }
+}
+
+.small-padding {
+  .cell {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+.fixed-width {
+  .el-button--mini {
+    padding: 7px 10px;
+    width: 60px;
+  }
+}
+
+.status-col {
+  .cell {
+    padding: 0 10px;
+    text-align: center;
+
+    .el-tag {
+      margin-right: 0px;
+    }
+  }
+}
+
+// to fixed https://github.com/ElemeFE/element/issues/2461
+.el-dialog {
+  transform: none;
+  left: 0;
+  position: relative;
+  margin: 0 auto;
+}
+
+// refine element ui upload
+.upload-container {
+  .el-upload {
+    width: 100%;
+
+    .el-upload-dragger {
+      width: 100%;
+      height: 200px;
+    }
+  }
+}
+
+// dropdown
+.el-dropdown-menu {
+  a {
+    display: block;
+  }
+}
+
+// fix date-picker ui bug in filter-item
+.el-range-editor.el-input__inner {
+  display: inline-flex !important;
+}
+.el-button {
+  [class*="el-icon-"] + span {
+    display: inline-block;
+    width: 0;
+    overflow: hidden;
+    margin-left: 0;
+    transition: all 0.2s;
+  }
+
+  &:hover [class*="el-icon-"] + span {
+    display: inline;
+    overflow: auto;
+    margin-left: 5px;
+  }
+
+  & + .el-button.el-button--small {
+    margin-left: 0;
+  }
+}
+
+// material input text
+.material-input {
+  margin-top: 3rem;
+}
+
+// checkbox group for create/edit ptn
+.el-checkbox-group {
+  width: 100%;
+  .el-checkbox {
+    .el-checkbox__label {
+      width: 97%;
+      .text-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        .text-1, .text-2 {
+          text-align: center;
+        }
+        .text-1 {
+          width: 20%;
+        }
+        .text-2 {
+          width: 80%;
+        }
+      }
+    }
+  }
+}
+
+.el-switch.is-checked {
+  .el-switch__core {
+    border-color: $orange;
+    background-color: $orange;
+  }
+}

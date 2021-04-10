@@ -4,14 +4,15 @@ import router from './router'
 import store from './store'
 
 import Element from 'element-ui';
+import './styles/vendors/element-variables.scss';
 import locale from 'element-ui/lib/locale/lang/en';
 
-import '@/styles/index.scss'; // global css
+import '@/styles/index.scss';
 
 
 Vue.use(Element, {
   locale,
-  size: Cookies.get('size') || 'medium' // set element-ui default size
+  size: 'small'
 });
 
 

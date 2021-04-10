@@ -5,7 +5,8 @@ import Layout from '@/layout';
 
 Vue.use(Router)
 
-const routes = [
+
+export const routes = [
   {
     path: '/',
     component: Layout,
@@ -13,7 +14,7 @@ const routes = [
     children: [
       {
         path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
+        component: () => import('@/views/dashboard/index.vue'),
         name: 'Dashboard',
         meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
       }
