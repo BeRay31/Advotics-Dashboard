@@ -1,4 +1,5 @@
 // cover some element-ui styles
+$green: #a2d4ac;
 * {
   font-family: 'Open Sans';
 }
@@ -11,7 +12,7 @@ input.el-input__inner,
   box-shadow: 0 0 5px rgba($color: #000000, $alpha: 0.15);
 
   &:focus {
-    border-color: $orange;
+    border-color: $green;
   }
 }
 
@@ -22,9 +23,9 @@ input.el-input__inner,
 .el-radio-button {
   &.is-active {
     .el-radio-button__inner {
-      background-color: $orange;
-      border-color: $orange;
-      box-shadow: -1px 0 0 0 $orange;
+      background-color: $green;
+      border-color: $green;
+      box-shadow: -1px 0 0 0 $green;
       color: white; 
 
       &:hover {
@@ -44,7 +45,7 @@ input.el-input__inner,
   .el-radio-button__inner {
     width: 100%;
     &:hover {
-      color: $orange;
+      color: $green;
     }
   }
 }
@@ -55,7 +56,7 @@ input.el-input__inner,
     min-height: 20px;
     max-width: 20px;
     max-height: 20px;
-    border-color: $orange;
+    border-color: $green;
     background: white;
     &::after {
       min-width: 18px;
@@ -63,20 +64,20 @@ input.el-input__inner,
       max-width: 18px;
       max-height: 18px;
       border: 1px solid white;
-      background-color: $orange;
+      background-color: $green;
     }
   }
 }
 
 .el-radio__input.is-checked {
   + .el-radio__label {
-    color: $orange;
+    color: $green;
   }
 
   .el-radio__inner {
     padding: 2px;
-    border-color: $orange;
-    background: $orange;
+    border-color: $green;
+    background: $green;
   }
 }
 
@@ -209,7 +210,7 @@ input.el-input__inner,
 
 .el-switch.is-checked {
   .el-switch__core {
-    border-color: $orange;
-    background-color: $orange;
+    border-color: $green;
+    background-color: $green;
   }
 }
