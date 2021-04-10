@@ -1,0 +1,18 @@
+.el-picker-panel {
+  &.has-sidebar {
+    .el-picker-panel__body-wrapper {
+      .el-picker-panel__sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem 1rem;
+        
+        button {
+          border-bottom: 2px solid #D2D2D2;
+          padding: 0;
+          padding-bottom: 0.5rem;
+        }
+      }
+    }
+  }
+}

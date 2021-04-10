@@ -12,7 +12,7 @@ import '@/styles/index.scss';
 
 Vue.use(Element, {
   locale,
-  size: 'small'
+  size: 'medium'
 });
 
 
