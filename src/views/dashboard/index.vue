@@ -13,16 +13,36 @@
         :default-value="new Date()">
       </el-date-picker>
     </header>
-    <div class="content-container">
-      
+    <div class="market-insight">
+      <div class="market-insight__left">
+        <h4>MARKET INSIGHT</h4>
+      </div>
+      <div class="market-insight__right">
+        <div class="bulb-container">
+          <img src="@/assets/img/bulb.png" alt>
+        </div>
+        <div class="help-text">Click here for help</div>
+        <div class="icon-drawer">
+          <i class="el-icon-arrow-up" />
+        </div>
+      </div>
     </div>
+    <DataSummaryCard 
+      :amount="1237123"
+      :percentage="76.5"
+    />
   </div>
 </template>
 
 <script>
 import moment from 'moment';
+import DataSummaryCard from './components/DataSummaryCard';
+
 export default {
   name: 'Dashboard',
+  components: {
+    DataSummaryCard
+  },
   data() {
     return {
       selectedDate: [
@@ -82,19 +102,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dashboard {
-  header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    h1 {
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: 0px;
-      color: #707070C4;
-    }
-  }
-}
+@import './index.scss'
 </style>

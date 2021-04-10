@@ -1,0 +1,47 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5  rem;
+
+  header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 0px;
+      color: #707070C4;
+    }
+  }
+  
+  .market-insight {
+    background: #37B04C 0% 0% no-repeat padding-box;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 2rem;
+    color: white;
+
+    &__left {
+      h4 {
+        font-weight: 600;
+        font-size: 1.25rem;
+      }
+    }
+
+    &__right {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+
+      .help-text {
+        text-decoration: underline;
+      }
+    }
+  }
+}
