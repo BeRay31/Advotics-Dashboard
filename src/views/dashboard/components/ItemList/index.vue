@@ -2,7 +2,7 @@
   <div class="item-list card">
     <div class="header-container">
       <span>{{ title.toUpperCase() }}</span>
-      <div class="more-icon">
+      <div class="more-icon" @click="alertOtherFeature">
         <img src="@/assets/svg/more-vertical.svg" alt="">
       </div>
     </div>
@@ -56,6 +56,12 @@ export default {
   methods: {
     parsedAmount(amount) {
       return priceToString(amount, 'Rp ', '', ',');
+    },
+    alertOtherFeature() {
+      this.$message({
+        message: `Under Construction :0 !, This mock data is randomized and mapped with the corresponding date :) !`,
+        type: 'success'
+      });
     }
   }
 }

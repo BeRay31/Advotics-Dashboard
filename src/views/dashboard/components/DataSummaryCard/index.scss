@@ -1,4 +1,5 @@
 .data-summary {
+  cursor: default;
   display: flex;
   flex-direction: column;
   background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -17,6 +18,10 @@
     span {
       color: #43425D;
       opacity: 0.5;
+    }
+
+    .more-icon {
+      cursor: pointer;
     }
   }
 

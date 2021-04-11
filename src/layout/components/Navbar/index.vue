@@ -1,6 +1,6 @@
 <template>
   <div class="navbar_va">
-    <div class="right-container">
+    <div class="right-container" @click="redirectToAdvotics">
       <div class="logo-container">
         <img src="@/assets/img/main-logo.jpg" alt="">
       </div>
@@ -11,13 +11,13 @@
     </div>
     <div class="left-container">
       <div class="name-container">
-        <div class="name">Dummy Username</div>
-        <div class="company-name">Dummy Company</div>
+        <div class="name">John Doellah</div>
+        <div class="company-name">Advotics</div>
       </div>
       <div class="avatar-container">
         <img src="@/assets/img/avatar.png" alt="">
       </div>
-      <div class="exit-container">
+      <div class="exit-container" @click="alertLogout">
         <img src="@/assets/img/logout.png" alt="">
       </div>
     </div>
@@ -27,6 +27,17 @@
 <script>
 export default {
   name: 'Navbar',
+  methods: {
+    redirectToAdvotics() {
+      window.open('https://www.advotics.com/id/', '_blank')
+    },
+    alertLogout() {
+      this.$message({
+        message: `Just pretend that you're logged out :)`,
+        type: 'success'
+      });
+    }
+  }
 };
 </script>
 

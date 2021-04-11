@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <div class="sidebar-item">
+    <div class="sidebar-item" @click="alertOthers">
       <div class="img-container">
         <img src="@/assets/svg/menu.svg" alt="">
       </div>
@@ -24,6 +24,14 @@ export default {
   data() {
     return {
       routes
+    }
+  },
+  methods: {
+    alertOthers() {
+      this.$message({
+        message: `Just pretend that you're clicked another menu :)`,
+        type: 'success'
+      });
     }
   }
 }

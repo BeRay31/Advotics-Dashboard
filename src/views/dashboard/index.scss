@@ -26,7 +26,7 @@
     justify-content: space-between;
     padding: 1.25rem 2rem;
     color: white;
-    cursor: pointer;
+    cursor: default;
 
     &__left {
       h4 {
@@ -41,6 +41,7 @@
       gap: 0.5rem;
 
       .help-text {
+        cursor: pointer;
         text-decoration: underline;
       }
     }
@@ -54,6 +55,7 @@
     .chart {
       display: flex;
       flex-direction: column;
+      gap: 0.5rem;
       
       .header-container {
         width: 100%;
@@ -72,6 +74,10 @@
           color: #4D4F5C;  
           width: fit-content;
           font-size: 1.25rem;
+        }
+
+        .more-icon {
+          cursor: pointer;
         }
       }
     }

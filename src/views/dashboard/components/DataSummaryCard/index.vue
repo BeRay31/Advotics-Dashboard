@@ -2,7 +2,7 @@
   <div class="data-summary">
     <div class="data-summary__upper">
       <span>Sales Turnover</span>
-      <div class="more-icon">
+      <div class="more-icon" @click="alertOtherFeature">
         <img src="@/assets/svg/more-vertical.svg" alt="">
       </div>
     </div>
@@ -45,6 +45,14 @@ export default {
   computed: {
     parsedAmount() {
       return priceToString(this.amount, 'Rp ', '', ',');
+    }
+  },
+  methods: {
+    alertOtherFeature() {
+      this.$message({
+        message: `Under Construction :0!, this value is total revenue of the selected range, and the percentage is just a random value :)`,
+        type: 'success'
+      });
     }
   }
 }

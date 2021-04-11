@@ -21,7 +21,7 @@
         <div class="bulb-container">
           <img src="@/assets/img/bulb.png" alt>
         </div>
-        <div class="help-text">Click here for help</div>
+        <div class="help-text" @click="help">Click here for help</div>
         <div class="icon-drawer">
           <i class="el-icon-arrow-up" />
         </div>
@@ -46,7 +46,7 @@
               :disabled="chartDatasets.length == 1 || chartDatasets.length > 40"
               inactive-text="Bar">
             </el-switch>
-            <div class="more-icon">
+            <div class="more-icon" @click="alertOtherFeature">
               <img src="@/assets/svg/more-vertical.svg" alt="">
             </div>
           </div>
@@ -157,7 +157,7 @@ export default {
         this.chartType = 'bar'
       }
 
-      if (this.chartDatasets.length > 40) {
+      if (this.chartDatasets.length >= 20) {
         this.chartType = 'line'
       }
 
@@ -187,7 +187,7 @@ export default {
           order: 1
         },
         {
-          label: "AVP",
+          label: "Average Per Purchase",
           data: totalAvpArr,
           order: 3
         }
@@ -286,6 +286,27 @@ export default {
       let totalSold = 0;
       data.forEach(el => {totalSold += el.totalSold});
       return totalSold;
+    },
+    alertOtherFeature() {
+      this.$message({
+        message: `Under Construction :0!, But you can toggle the chart view beside this icon :)!`,
+        type: 'success'
+      });
+    },
+    help() {
+      this.$alert(`This is a page that might give you an insight about the company market, 
+      you can see your company best selling depends on the date range you choose, 
+      also at the same time you see the top competitor product with its details. 
+      The Chart might give you information about your company market, it tels total products sold, Average Purchase Value (revenue/total sold), revenue.
+      You could toggle the view mode of the chart to make it best for your preference. Thats it :) `, 'Dashboard', {
+        confirmButtonText: 'OK',
+        callback: () => {
+          this.$message({
+            type: 'success',
+            message: `Hope it will help you :) !!`
+          });
+        }
+      });
     }
   }
 }
