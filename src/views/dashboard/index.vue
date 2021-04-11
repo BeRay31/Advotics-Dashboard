@@ -29,7 +29,7 @@
     </div>
     <DataSummaryCard 
       :amount="computeTotalSoldRevenues"
-      :percentage="76.5"
+      :percentage="Math.floor(Math.random()*100)/10"
     />
     <div class="content-container">
       <div class="chart card">
