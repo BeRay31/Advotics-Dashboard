@@ -34,12 +34,27 @@
     <div class="content-container">
       <div class="chart card">
         <div class="header-container">
-          <span>AVERAGE PURCHASE VALUE</span>
-          <div class="more-icon">
-            <img src="@/assets/svg/more-vertical.svg" alt="">
+          <div class="header-container__left">
+            <span>AVERAGE PURCHASE VALUE</span>
+          </div>
+          <div class="header-container__right">
+            <el-switch
+              v-model="chartType"
+              active-value="line"
+              active-text="Line"
+              inactive-value="bar"
+              :disabled="chartDatasets.length == 1 || chartDatasets.length > 40"
+              inactive-text="Bar">
+            </el-switch>
+            <div class="more-icon">
+              <img src="@/assets/svg/more-vertical.svg" alt="">
+            </div>
           </div>
         </div>
-        <BarChart v-if="chartShowed" :chart-data="chartData"/>
+        <template v-if="chartShowed">
+          <BarChart v-if="chartType === 'bar'" :chart-data="chartData"/>
+          <LineChart v-if="chartType === 'line'" :chart-data="chartData"/>
+        </template>
       </div>
       <ItemList 
         title="BEST SELLING SKU"
@@ -58,7 +73,8 @@ import moment from 'moment';
 
 import DataSummaryCard from './components/DataSummaryCard';
 import ItemList from './components/ItemList';
-import BarChart from "./components/Chart";
+import BarChart from "./components/Chart/BarChart";
+import LineChart from "./components/Chart/LineChart";
 
 import { soldProductGenerator, competitorProductGenerator } from '@/utils/productSelling';
 
@@ -67,10 +83,12 @@ export default {
   components: {
     DataSummaryCard,
     ItemList,
-    BarChart
+    BarChart,
+    LineChart
   },
   data() {
     return {
+      chartType: 'bar',
       chartShowed: false,
       chartData: {},
       chartLabel: [],
@@ -135,6 +153,14 @@ export default {
       this.chartData.labels = this.chartLabel;
     },
     chartDatasets() {
+      if (this.chartDatasets.length == 1) {
+        this.chartType = 'bar'
+      }
+
+      if (this.chartDatasets.length > 40) {
+        this.chartType = 'line'
+      }
+
       const totalRevenueArr = this.chartDatasets.map(el => {
         return this.calcTotalSoldRevenues(el)/1000;
       })
@@ -153,12 +179,12 @@ export default {
         {
           label: "Total Revenue in (X/1000)",
           data: totalRevenueArr,
-          order: 1
+          order: 2
         },
         {
           label: "Total SOLD",
           data: totalSoldArr,
-          order: 2
+          order: 1
         },
         {
           label: "AVP",

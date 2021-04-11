@@ -16,7 +16,7 @@ export default {
           pointLabels: {
             fontSize: 12,
             fontColor: '#43425d',
-            fontFamily: 'nunito'
+            fontFamily: 'Open Sans'
           },
           xAxes: [{
             barPercentage: 0.7,

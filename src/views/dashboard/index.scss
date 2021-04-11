@@ -61,6 +61,12 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+
+        &__right {
+          display: flex;
+          flex-direction: row;
+          gap: 0.5rem;
+        }
     
         span {
           color: #4D4F5C;  
