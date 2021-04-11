@@ -28,12 +28,18 @@
       </div>
     </div>
     <DataSummaryCard 
-      :amount="1237123"
+      :amount="computeTotalSoldRevenues"
       :percentage="76.5"
     />
     <div class="content-container">
       <div class="chart card">
-
+        <div class="header-container">
+          <span>AVERAGE PURCHASE VALUE</span>
+          <div class="more-icon">
+            <img src="@/assets/svg/more-vertical.svg" alt="">
+          </div>
+        </div>
+        <BarChart v-if="chartShowed" :chart-data="chartData"/>
       </div>
       <ItemList 
         title="BEST SELLING SKU"
@@ -52,16 +58,23 @@ import moment from 'moment';
 
 import DataSummaryCard from './components/DataSummaryCard';
 import ItemList from './components/ItemList';
+import BarChart from "./components/Chart";
+
 import { soldProductGenerator, competitorProductGenerator } from '@/utils/productSelling';
 
 export default {
   name: 'Dashboard',
   components: {
     DataSummaryCard,
-    ItemList
+    ItemList,
+    BarChart
   },
   data() {
     return {
+      chartShowed: false,
+      chartData: {},
+      chartLabel: [],
+      chartDatasets: [],
       selectedDate: [
         moment().subtract(7, 'days'),
         moment().subtract(1, 'days')
@@ -117,22 +130,65 @@ export default {
     }
   },
   watch: {
-    selectedDate() {
-      console.log("CHANGED")
+    chartLabel() {
+      this.chartShowed = false;
+      this.chartData.labels = this.chartLabel;
+    },
+    chartDatasets() {
+      const totalRevenueArr = this.chartDatasets.map(el => {
+        return this.calcTotalSoldRevenues(el)/1000;
+      })
+
+      const totalSoldArr = this.chartDatasets.map(el => {
+        return this.calcTotalSold(el);
+      })
+
+      const totalAvpArr = []
+
+      for(let i = 0; i < totalRevenueArr.length; i++) {
+        totalAvpArr.push(totalRevenueArr[i]*1000/totalSoldArr[i]);
+      }
+
+      this.chartData.datasets = [
+        {
+          label: "Total Revenue in (X/1000)",
+          data: totalRevenueArr,
+          order: 1
+        },
+        {
+          label: "Total SOLD",
+          data: totalSoldArr,
+          order: 2
+        },
+        {
+          label: "AVP",
+          data: totalAvpArr,
+          order: 3
+        }
+      ]
+      this.chartData = {...this.chartData}
+      this.chartShowed = true
     }
   },
   computed: {
+    computeTotalSoldRevenues() {
+      return this.calcTotalSoldRevenues(this.computedSoldData)
+    },
     computedSoldData() {
-      const startDate = moment(this.selectedDate[0].format('YYYY-MM-DD'));
-      const endDate = moment(this.selectedDate[1].format('YYYY-MM-DD'));
+      const startDate = moment(moment(this.selectedDate[0]).format('YYYY-MM-DD'));
+      const endDate = moment(moment(this.selectedDate[1]).format('YYYY-MM-DD'));
+      this.chartLabel = [];
+      this.chartDatasets = [];
       let sumSoldData = [];
       for (let m = moment(startDate); m.diff(endDate, 'days') <= 0; m.add(1, 'days')) {
         const key = m.format('DD-MM-YYYY');
+        this.chartLabel.push(key);
         let data = this.productSoldDataMap.get(key);
         if (data == null) {
           data = soldProductGenerator();
           this.productSoldDataMap.set(key, data);
         }
+        this.chartDatasets.push(data);
         if (sumSoldData.length == 0) {
           sumSoldData = JSON.parse(JSON.stringify(data)); // deepcpy
         }
@@ -147,8 +203,8 @@ export default {
       return sumSoldData;
     },
     computedCompetitorSoldData() {
-      const startDate = moment(this.selectedDate[0].format('YYYY-MM-DD'));
-      const endDate = moment(this.selectedDate[1].format('YYYY-MM-DD'));
+      const startDate = moment(moment(this.selectedDate[0]).format('YYYY-MM-DD'));
+      const endDate = moment(moment(this.selectedDate[1]).format('YYYY-MM-DD'));
       let sumSoldData = [];
       for (let m = moment(startDate); m.diff(endDate, 'days') <= 0; m.add(1, 'days')) {
         const key = m.format('DD-MM-YYYY');
@@ -174,9 +230,38 @@ export default {
   methods: {
     extractKey(date) {
       return date.format('DD-MM-YYYY')
+    },
+    updateChart() {
+      let labels = [];
+      let datasets = [];
+      for (let m = moment(startDate); m.diff(endDate, 'days') <= 0; m.add(1, 'days')) {
+        const key = m.format('DD-MM-YYYY');
+        labels.push(key);
+        let data = this.competitorSoldDataMap.get(key);
+        if (data == null) {
+          data = competitorProductGenerator();
+          this.competitorSoldDataMap.set(key, data);
+        }
+        datasets.push(data);
+      }
+      return {labels, datasets}
+    },
+    calcTotalSoldRevenues(data) {
+      let turnOver = 0;
+      data.forEach(el => {turnOver += el.totalRevenue});
+      return turnOver;
+    },
+    calcTotalAvp(data) {
+      let totalAvp = 0;
+      data.forEach(el => {totalAvp += (el.totalRevenue/el.totalSold)});
+      return totalAvp;
+    },
+    calcTotalSold(data) {
+      let totalSold = 0;
+      data.forEach(el => {totalSold += el.totalSold});
+      return totalSold;
     }
   }
-
 }
 </script>
 

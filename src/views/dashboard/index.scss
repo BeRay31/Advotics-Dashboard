@@ -50,5 +50,25 @@
     display: grid;
     grid-template-columns: 1fr 0.375fr 0.375fr;
     gap: 1rem;
+
+    .chart {
+      display: flex;
+      flex-direction: column;
+      
+      .header-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    
+        span {
+          color: #4D4F5C;  
+          width: fit-content;
+          font-size: 1.25rem;
+        }
+      }
+    }
+
   }
 }

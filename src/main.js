@@ -15,7 +15,6 @@ Vue.use(Element, {
   size: 'medium'
 });
 
-
 Vue.config.productionTip = false
 
 new Vue({
