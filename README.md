@@ -6,7 +6,7 @@ CSR Dashboard dedicated for Advotics interview task
 2. Open Terminal in project directory
 3. type `npm install` to install all project dependencies
 4. type `npm run serve` (don't ever hit update, some updated packages make this project crash `chart.js 3.x` so i used `chart.js 2.9.x`)
-5. Wait the project ready to open on your local browser
+5. Wait the project ready to open on your local browser (Chrome Recommended)
 6. Open the project (Click link on the terminal)
 7. Enjoy :)
 
